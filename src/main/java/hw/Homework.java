@@ -25,6 +25,9 @@ import org.apache.flink.util.Collector;
 
 public class Homework {
 	public static void main(String[] args) throws Exception {
+
+		System.out.println("program will calculate which was the most popular resource every day. ");
+
 		ParameterTool params = ParameterTool.fromArgs(args);
 		final String inputAug = params.get("input", "access_log_Aug95");
 		final int cores = Integer.valueOf(params.get("cores", "4"));
@@ -93,7 +96,7 @@ public class Homework {
 			Integer hour = Integer.parseInt(tmp[3]);
 			Integer min = Integer.parseInt(tmp[4]);
 			Integer sec = Integer.parseInt(tmp[5]);
-			DateTime dt = new DateTime(yyyy, mm, day, hour, min, sec, 0);
+			DateTime dt = new DateTime(yyyy, mm, day, 0, 0, 0, 0);
 
 			out.collect(new Tuple4<>(day, dt, tokens[4], 1));
 		}
